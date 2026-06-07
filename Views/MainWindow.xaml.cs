@@ -53,7 +53,7 @@ namespace ShoeStore.Views
             {
                 if (string.IsNullOrEmpty(imagePath))
                 {
-                    imageControl.Source = new BitmapImage(new Uri("pack://Users/sl903/source/repos/WpfApp5/Resources"));
+                    imageControl.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/picture.jpg"));
                 }
                 else
                 {
@@ -64,12 +64,12 @@ namespace ShoeStore.Views
                     }
                     else
                     {
-                        imageControl.Source = new BitmapImage(new Uri("pack://Users/sl903/source/repos/WpfApp5/Resources"));
+                        imageControl.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/picture.jpg"));
                     }
                 }
             }
             catch {
-            imageControl.Source = new BitmapImage(new Uri("pack://Users/sl903/source/repos/WpfApp5/Resources"));
+            imageControl.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/picture.jpg"));
             }
 
         }
