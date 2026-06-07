@@ -1,0 +1,29 @@
+﻿<Window x:Class="ShoeStore.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShoeStore.Views"
+        mc:Ignorable="d"
+        Title="ООО обувь-вход" Height="420" Width="400"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="SingleBorderWindow" Cursor="">
+    
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+            <Image Source="/Resources/logo.jpg"
+                Width="80" Height="80" HorizontalAlignment="Center" Margin="0 0 0 25"/>
+            <TextBlock Text="логин" FontWeight="Bold" Margin="0 5 0 3"/>
+            <TextBox x:Name="TbLogin" Height="32" FontSize="14" Padding="5, 0" Margin="0 0 0 12"/>
+            <TextBlock Text="пароль" FontWeight="Bold" Margin="0 5 0 3"/>
+            <PasswordBox x:Name="PbPassword" Height="32" FontSize="14" Padding="0, 5" Margin="0 0 0 20"/>
+            <Button x:Name="BtnLogin" Content="войти" Height="38" 
+                    FontSize="16" Background="#00fa9a" FontWeight="Bold" Click="BtnLogin_Click"/>
+            <TextBlock x:Name="TbError" Foreground="Red" TextAlignment="Center" 
+                       FontWeight="Bold" Margin="0 12 0 0" TextWrapping="Wrap"/>
+            <Button Content="Продолжить как гость" Background="Transparent" Foreground="Gray" 
+                    BorderThickness="0" Cursor="Hand" FontSize="13" Margin="0 25 0 0" Click="BtnGuest_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
