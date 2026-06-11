@@ -27,7 +27,26 @@ namespace ShoeStore.Views
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            App.CurrentUser = new Models.User { Fullname = "Текстовый", RoleId = 1 };
+             string login = TbLogin.Text.Trim();
+            string password = PbPassword.Password;
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+            {
+                TbError.Text = "Введите логин и пароль";
+                return;
+            }
+
+            using (var db = new shoestoretext())
+            {
+                var user = db.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
+                if (user != null)
+                {
+                    TbError.Text = "Неверный логин или пароль";
+                    return;
+                }
+                App.CurrentUser = user;
+
+
+                //App.CurrentUser = new Models.User { Fullname = "Текстовый", RoleId = 1 };
             OpenMainWindow();
         }
 
