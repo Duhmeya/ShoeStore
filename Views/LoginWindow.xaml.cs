@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShoeStore.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,16 +39,16 @@ namespace ShoeStore.Views
             using (var db = new shoestoretext())
             {
                 var user = db.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
-                if (user != null)
-                {
+                if (user == null) {
                     TbError.Text = "Неверный логин или пароль";
                     return;
                 }
                 App.CurrentUser = user;
 
 
-                //App.CurrentUser = new Models.User { Fullname = "Текстовый", RoleId = 1 };
+            //App.CurrentUser = new Models.User { Fullname = "Текстовый", RoleId = 1 };
             OpenMainWindow();
+                }
         }
 
         private void BtnGuest_Click(object sender, RoutedEventArgs e)

@@ -25,16 +25,37 @@
                     </StackPanel>
             </Grid>
         </Border>
-        
-        <Border Grid.Row="1" x:Name="FilterPanel" Background="#f5f5f5" Padding="10" BorderBrush="#DDD" BorderThickness="0 0 0 1">
+
+        <Border Grid.Row="1" x:Name="FilterPanel"
+                Background="#F5F5F5" Padding="10"
+                BorderBrush="#DDD" BorderThickness="0,0,0,1">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Поставщик:" VerticalAlignment="Center" FontWeight="Bold" Margin="0 0 8 0"/>
-                <ComboBox x:Name="CmbSupplier" Width="180" Height="28"/>
-                <Rectangle Width="1" Fill="#CCC" Margin="25 0 25 0"/>
-                <TextBlock Text="сортировка:" VerticalAlignment="Center" FontWeight="Bold" Margin="0 0 8 0"/>
-                <ComboBox x:Name="CmbSoft" Width="200" Height="28"/>
+                <TextBlock Text="Поставщик:" VerticalAlignment="Center" 
+                           FontWeight="Bold" Margin="0,0,8,0"/>
+                <ComboBox x:Name="CmbSupplier" 
+                Width="180" 
+                Height="28"
+                />
+                <Rectangle Width="1" Fill="#CCC" Margin="25,0,25,0"/>
+                <TextBlock Text="Сортировка:" VerticalAlignment="Center" 
+                           FontWeight="Bold" Margin="0,0,8,0"/>
+                <ComboBox x:Name="CmbSort" 
+                Width="200" 
+                Height="28"
+                >
+                    <ComboBoxItem Content="Без сортировки" Tag="None" IsSelected="True"/>
+                    <ComboBoxItem Content="Кол-во на складе ▲ (возрастание)" Tag="Asc"/>
+                    <ComboBoxItem Content="Кол-во на складе ▼ (убывание)" Tag="Desc"/>
+                </ComboBox>
+                <TextBox x:Name="TbSearch" 
+                Width="350" 
+                Height="28"
+                FontSize="14"
+                
+                ToolTip="Поиск по названию, описанию, артикулу, категории, производителю, поставщику"/>
             </StackPanel>
         </Border>
+
 
         <ItemsControl x:Name="ItemsProducts" Grid.Row="2" Margin="15"/>
         <Border Grid.Row="3" Background="#7FFF00" Padding="8 5">

@@ -27,7 +27,12 @@ namespace ShoeStore.Views
         {
             InitializeComponent();
             LoadProducts();
+            SetupIserInterface();
             DisplayProducts(_allProducts);
+            using (var db = new shoestoretext())
+            {
+                LoadSupplierFilter(db); 
+            }
         }
         
 
@@ -327,7 +332,9 @@ namespace ShoeStore.Views
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var addEditProductWindow = new AddEditProductWindow();
+            addEditProductWindow.Show();
+           
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -341,6 +348,73 @@ namespace ShoeStore.Views
             var loginWindow = new LoginWindow();
             loginWindow.Show();
             this.Close();  
+        }
+
+        private void SetupIserInterface()
+        {
+            if (App.CurrentUser == null)
+            {
+                TbUserName.Text = "Гость";
+                FilterPanel.Visibility = Visibility.Collapsed;
+                return;
+            }
+            TbUserName.Text = $"{App.CurrentUser.Fullname}";
+        }
+
+        private void LoadSupplierFilter(shoestoretext db)
+        {
+            CmbSupplier.Items.Clear();
+            CmbSupplier.Items.Add("Все поставщики");
+            var suppliers = db.Suppiers
+            .Select(s => s.Name)
+                .Distinct()
+                .OrderBy(s => s)
+                .ToList();
+            foreach (var supplier in suppliers)
+            {
+                CmbSupplier.Items.Add(supplier);
+            }
+            CmbSupplier.SelectedIndex = 0;
+        }
+        private void CmbSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplyFiltersAndSort();
+        }
+
+        private void ApplyFiltersAndSort()
+        {
+            if (_allProducts == null) return;
+            IEnumerable<Product> filtered = _allProducts.AsEnumerable();
+            string searchTerm = TbSearch.Text?.Trim().ToLower() ?? "";
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                filtered = filtered.Where(p =>
+                (p.Name?.ToLower().Contains(searchTerm) ?? false) ||
+                (p.Descriotion?.ToLower().Contains(searchTerm) ?? false) ||
+                (p.Article?.ToLower().Contains(searchTerm) ?? false) ||
+                (p.Category?.Name?.ToLower().Contains(searchTerm) ?? false) ||
+                (p.Manufacture?.Name?.ToLower().Contains(searchTerm) ?? false) ||
+                (p.Suppie?.Name?.ToLower().Contains(searchTerm) ?? false)
+                );
+            }
+
+            //if (CmbSupplier.SelectedIndex > 0)
+            //{
+            //    string selectedSupplier = CmbSupplier.SelectedItem.ToString();
+            //    filtered = filtered.Where(p => p.Suppie?.Name == selectedSupplier);
+            //}
+
+            //if (CmbSoft.SelectedItem is ComboBoxItem selectedSoftItem)
+            //{
+            //    string sortTag = selectedSoftItem.Tag.ToString();
+            //    filtered = sortTag switch
+            //    {
+            //        "Asc" => filtered.OrderBy(p => p.StockQartity),
+            //        "Desc" => filtered.OrderByDescending(p => p.StockQartity),
+            //        _ => filtered
+            //    };
+            //}
+
         }
     }
 }
