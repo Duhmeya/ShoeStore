@@ -71,20 +71,5 @@ namespace ShoeStore.Views
                 Close();
             }
         }
-
-        private void BtnDelete_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnChooseImage_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnCancel_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

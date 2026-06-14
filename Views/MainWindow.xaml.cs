@@ -339,7 +339,19 @@ namespace ShoeStore.Views
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var product = (sender as Button)?.Tag as Product;
+            var result = MessageBox.Show($"Удалить {product.Name}?", "Подтверждение",
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                using (var context = new shoestoretext())
+                {
+                    context.Products.Remove(context.Products.Find(product.Article));
+                    context.SaveChanges();
+                }
+                MessageBox.Show("Удалено!");
+            }
         }
 
         private void BtnExit_Click (object sender, RoutedEventArgs e)
@@ -397,24 +409,6 @@ namespace ShoeStore.Views
                 (p.Suppie?.Name?.ToLower().Contains(searchTerm) ?? false)
                 );
             }
-
-            //if (CmbSupplier.SelectedIndex > 0)
-            //{
-            //    string selectedSupplier = CmbSupplier.SelectedItem.ToString();
-            //    filtered = filtered.Where(p => p.Suppie?.Name == selectedSupplier);
-            //}
-
-            //if (CmbSoft.SelectedItem is ComboBoxItem selectedSoftItem)
-            //{
-            //    string sortTag = selectedSoftItem.Tag.ToString();
-            //    filtered = sortTag switch
-            //    {
-            //        "Asc" => filtered.OrderBy(p => p.StockQartity),
-            //        "Desc" => filtered.OrderByDescending(p => p.StockQartity),
-            //        _ => filtered
-            //    };
-            //}
-
         }
     }
 }
