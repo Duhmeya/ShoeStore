@@ -19,7 +19,7 @@
             <TextBlock Text="пароль" FontWeight="Bold" Margin="0 5 0 3"/>
             <PasswordBox x:Name="PbPassword" Height="32" FontSize="14" Padding="0, 5" Margin="0 0 0 20"/>
             <Button x:Name="BtnLogin" Content="войти" Height="38" 
-                    FontSize="16" Background="#00fa9a" FontWeight="Bold" Click="BtnLogin_Click"/>
+                    FontSize="16" Background="#00fa9a" FontWeight="Bold" Click="BtnLogin_Click" RenderTransformOrigin="1,0"/>
             <TextBlock x:Name="TbError" Foreground="Red" TextAlignment="Center" 
                        FontWeight="Bold" Margin="0 12 0 0" TextWrapping="Wrap"/>
             <Button Content="Продолжить как гость" Background="Transparent" Foreground="Gray" 

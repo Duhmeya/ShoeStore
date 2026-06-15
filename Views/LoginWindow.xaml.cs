@@ -28,7 +28,7 @@ namespace ShoeStore.Views
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-             string login = TbLogin.Text.Trim();
+            string login = TbLogin.Text.Trim();
             string password = PbPassword.Password;
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
@@ -48,7 +48,7 @@ namespace ShoeStore.Views
 
             //App.CurrentUser = new Models.User { Fullname = "Текстовый", RoleId = 1 };
             OpenMainWindow();
-                }
+            }
         }
 
         private void BtnGuest_Click(object sender, RoutedEventArgs e)

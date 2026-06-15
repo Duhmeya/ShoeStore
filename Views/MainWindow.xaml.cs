@@ -29,13 +29,12 @@ namespace ShoeStore.Views
             LoadProducts();
             SetupIserInterface();
             DisplayProducts(_allProducts);
-            using (var db = new shoestoretext())
-            {
-                LoadSupplierFilter(db); 
-            }
+            //using (var db = new shoestoretext())
+            //{
+            //    LoadSupplierFilter(db); 
+            //}
         }
         
-
         private List<Product> _allProducts;
 
         private void LoadProducts()
@@ -113,8 +112,7 @@ namespace ShoeStore.Views
 
                 var photoImage = new Image
                 {
-                    Width = 100,
-                    Height = 100,
+                    Width = 100, Height = 100,
                     Stretch = Stretch.Uniform,
                     Margin = new Thickness(0, 0, 15, 0)
                 };
@@ -134,8 +132,7 @@ namespace ShoeStore.Views
                 var categoryTextBlock = new TextBlock
                 {
                     Text = product.Category? .Name ?? "Без категории",
-                    FontWeight = FontWeights.Bold,
-                    FontSize = 14,
+                    FontWeight = FontWeights.Bold, FontSize = 14,
                     Foreground = new SolidColorBrush(Color.FromRgb(100, 100, 100)),
                     Margin = new Thickness(0, 0, 10, 0)
                 };
@@ -144,11 +141,9 @@ namespace ShoeStore.Views
                 var nameTextBlack = new TextBlock
                 {
                     Text = product.Name,
-                    FontWeight = FontWeights.Bold,
-                    FontSize = 14,
+                    FontWeight = FontWeights.Bold, FontSize = 14,
                 };
                 headerPanel.Children.Add(nameTextBlack);
-
                 infoPanel.Children.Add(headerPanel);
 
                 var descTextBlock = new TextBlock
@@ -156,8 +151,7 @@ namespace ShoeStore.Views
                     Text = $"Описание: {product.Descriotion ?? "-"}",
                     FontSize = 12,
                     Foreground = new SolidColorBrush(Color.FromRgb(80, 80, 80)),
-                    TextTrimming = TextTrimming.CharacterEllipsis,
-                    MaxWidth = 400,
+                    TextTrimming = TextTrimming.CharacterEllipsis, MaxWidth = 400,
                     Margin = new Thickness(0, 0, 0, 3)
                 };
                 infoPanel.Children.Add(descTextBlock);
@@ -165,16 +159,14 @@ namespace ShoeStore.Views
                 var manufactureTextBlock = new TextBlock
                 {
                     Text = $"Производитель: {product.Manufacture? .Name ?? "-"}",
-                    FontSize = 12,
-                    Margin = new Thickness(0, 0, 0, 3)
+                    FontSize = 12, Margin = new Thickness(0, 0, 0, 3)
                 };
                 infoPanel.Children.Add (manufactureTextBlock);
 
                 var SuppierTextBlock = new TextBlock
                 {
                     Text = $"Поставщик: {product.Suppie?.Name ?? "-"}",
-                    FontSize = 12,
-                    Margin = new Thickness(0, 0, 0, 3)
+                    FontSize = 12, Margin = new Thickness(0, 0, 0, 3)
                 };
                 infoPanel.Children.Add(SuppierTextBlock);
 
@@ -190,8 +182,7 @@ namespace ShoeStore.Views
                     {
                         Text = $"{product.Price:N2} $",
                         TextDecorations = TextDecorations.Strikethrough,
-                        Foreground = Brushes.Red,
-                        FontSize = 12
+                        Foreground = Brushes.Red, FontSize = 12
                     };
                     pricePanel.Children.Add(oldPrice);
 
@@ -200,8 +191,7 @@ namespace ShoeStore.Views
                     var newPrice = new TextBlock
                     {
                         Text = $"{discountedPrice:N2} $",
-                        FontWeight = FontWeights.Bold,
-                        FontSize = 13,
+                        FontWeight = FontWeights.Bold, FontSize = 13,
                         Margin = new Thickness(5, 0, 0, 0)
                     };
                     pricePanel.Children.Add(newPrice);
@@ -209,24 +199,21 @@ namespace ShoeStore.Views
                 else {
                     var price = new TextBlock
                     {
-                        Text = $"Цена: {product.Price:N2} $",
-                        FontSize= 12
+                        Text = $"Цена: {product.Price:N2} $", FontSize= 12
                     };
                     pricePanel.Children.Add(price);
 
                     var unitTextBlock = new TextBlock
                     {
                         Text = $"Еденица измерения: {product.Unit}",
-                        FontSize = 12,
-                        Margin = new Thickness(0, 0, 0, 3)
+                        FontSize = 12, Margin = new Thickness(0, 0, 0, 3)
                     };
                     infoPanel.Children.Add(unitTextBlock);
 
                     var quantityTextBlock = new TextBlock 
                     {
                         Text = $"Количество на складе: {product.StockQartity}",
-                        FontSize = 12,
-                        Foreground = product.StockQartity == 0
+                        FontSize = 12, Foreground = product.StockQartity == 0
                         ? Brushes.Red :
                         new SolidColorBrush(Color.FromRgb(0, 100, 0))
                     };
@@ -234,52 +221,50 @@ namespace ShoeStore.Views
                     mainStack.Children.Add(infoPanel);
                 } 
 
-                var discountPanel = new StackPanel
-                {
-                    Orientation = Orientation.Vertical,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Margin = new Thickness (20, 0, 10, 0)
-                };
-                if (product.Discount > 0)
-                {
-                    var discountBadge = new Border
-                    {
-                        Background = new SolidColorBrush(Color.FromRgb(220, 50, 50)),
-                        CornerRadius = new CornerRadius(3),
-                        Padding = new Thickness(8, 3, 8, 3),
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                    };
-                    var discountText = new TextBlock
-                    {
-                        Text = $"-{product.Discount}%",
-                        Foreground = Brushes.White,
-                        FontSize = 14,
-                        FontWeight = FontWeights.Bold
-                    };
-                    discountBadge.Child = discountText;
-                    discountPanel.Children.Add(discountBadge);
+                //var discountPanel = new StackPanel
+                //{
+                //    Orientation = Orientation.Vertical,
+                //    VerticalAlignment = VerticalAlignment.Center,
+                //    Margin = new Thickness (20, 0, 10, 0)
+                //};
+                //if (product.Discount > 0)
+                //{
+                //    var discountBadge = new Border
+                //    {
+                //        Background = new SolidColorBrush(Color.FromRgb(220, 50, 50)),
+                //        CornerRadius = new CornerRadius(3),
+                //        Padding = new Thickness(8, 3, 8, 3),
+                //        HorizontalAlignment = HorizontalAlignment.Center,
+                //    };
+                //    var discountText = new TextBlock
+                //    {
+                //        Text = $"-{product.Discount}%",
+                //        Foreground = Brushes.White, FontSize = 14,
+                //        FontWeight = FontWeights.Bold
+                //    };
+                //    discountBadge.Child = discountText;
+                //    discountPanel.Children.Add(discountBadge);
 
-                    var discountLabel = new TextBlock
-                    {
-                        Text = "Действующая\nскидка",
-                        FontSize = 11,
-                        Foreground = new SolidColorBrush(Color.FromRgb(120, 120, 120)),
-                        Margin = new Thickness(0, 5, 0, 0)
-                    };
-                    discountPanel.Children.Add(discountLabel);
-                }
-                else {
+                //    var discountLabel = new TextBlock
+                //    {
+                //        Text = "Действующая\nскидка", FontSize = 11,
+                //        Foreground = new SolidColorBrush(Color.FromRgb(120, 120, 120)),
+                //        Margin = new Thickness(0, 5, 0, 0)
+                //    };
+                //    discountPanel.Children.Add(discountLabel);
+                //}
+                //else {
 
-                    var noDiscount = new TextBlock
-                    {
-                        Text = "-",
-                        FontSize= 14,
-                        Foreground = new SolidColorBrush(Color.FromRgb(180, 180, 180)),
-                        VerticalAlignment = VerticalAlignment.Center
-                    };
-                    discountPanel.Children.Add (noDiscount);
-                }
-                mainStack.Children.Add(discountPanel);
+                //    var noDiscount = new TextBlock
+                //    {
+                //        Text = "-",
+                //        FontSize= 14,
+                //        Foreground = new SolidColorBrush(Color.FromRgb(180, 180, 180)),
+                //        VerticalAlignment = VerticalAlignment.Center
+                //    };
+                //    discountPanel.Children.Add (noDiscount);
+                //}
+                //mainStack.Children.Add(discountPanel);
 
                 if (IsCurrentUserAdmin())
                 {
@@ -292,34 +277,23 @@ namespace ShoeStore.Views
 
                     var editButton = new Button
                     {
-                        Content = "Edit",
-                        Width = 100,
-                        Height = 30,
-                        FontSize = 12,
+                        Content = "Edit", Width = 100, Height = 30, FontSize = 12,
                         Background = new SolidColorBrush(Color.FromRgb(70, 130, 180)),
-                        Foreground = Brushes.White,
-                        Tag = product,
-                        Cursor = Cursors.Hand,
+                        Foreground = Brushes.White, Tag = product, Cursor = Cursors.Hand,
                         Margin = new Thickness(0, 0, 0, 5)
                     };
                     editButton.Click += EditButton_Click;
                     actionPanel.Children.Add(editButton);
                     var deleteButton = new Button
                     {
-                        Content = "Delete",
-                        Width = 100,
-                        Height = 30,
-                        FontSize = 12,
+                        Content = "Delete", Width = 100, Height = 30, FontSize = 12,
                         Background = new SolidColorBrush(Color.FromRgb(200, 60, 60)),
-                        Foreground = Brushes.White,
-                        Tag = product,
-                        Cursor = Cursors.Hand,
+                        Foreground = Brushes.White, Tag = product, Cursor = Cursors.Hand,
                     };
                     deleteButton.Click += DeleteButton_Click;
                     actionPanel.Children.Add(deleteButton);
                     mainStack.Children.Add(actionPanel);
-                }
-                ;
+                };
                 border.Child = mainStack;
                 ItemsProducts.Items.Add(border);
             }
@@ -373,42 +347,42 @@ namespace ShoeStore.Views
             TbUserName.Text = $"{App.CurrentUser.Fullname}";
         }
 
-        private void LoadSupplierFilter(shoestoretext db)
-        {
-            CmbSupplier.Items.Clear();
-            CmbSupplier.Items.Add("Все поставщики");
-            var suppliers = db.Suppiers
-            .Select(s => s.Name)
-                .Distinct()
-                .OrderBy(s => s)
-                .ToList();
-            foreach (var supplier in suppliers)
-            {
-                CmbSupplier.Items.Add(supplier);
-            }
-            CmbSupplier.SelectedIndex = 0;
-        }
-        private void CmbSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ApplyFiltersAndSort();
-        }
+        //private void LoadSupplierFilter(shoestoretext db)
+        //{
+        //    CmbSupplier.Items.Clear();
+        //    CmbSupplier.Items.Add("Все поставщики");
+        //    var suppliers = db.Suppiers
+        //    .Select(s => s.Name)
+        //        .Distinct()
+        //        .OrderBy(s => s)
+        //        .ToList();
+        //    foreach (var supplier in suppliers)
+        //    {
+        //        CmbSupplier.Items.Add(supplier);
+        //    }
+        //    CmbSupplier.SelectedIndex = 0;
+        //}
+        //private void CmbSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    ApplyFiltersAndSort();
+        //}
 
-        private void ApplyFiltersAndSort()
-        {
-            if (_allProducts == null) return;
-            IEnumerable<Product> filtered = _allProducts.AsEnumerable();
-            string searchTerm = TbSearch.Text?.Trim().ToLower() ?? "";
-            if (!string.IsNullOrEmpty(searchTerm))
-            {
-                filtered = filtered.Where(p =>
-                (p.Name?.ToLower().Contains(searchTerm) ?? false) ||
-                (p.Descriotion?.ToLower().Contains(searchTerm) ?? false) ||
-                (p.Article?.ToLower().Contains(searchTerm) ?? false) ||
-                (p.Category?.Name?.ToLower().Contains(searchTerm) ?? false) ||
-                (p.Manufacture?.Name?.ToLower().Contains(searchTerm) ?? false) ||
-                (p.Suppie?.Name?.ToLower().Contains(searchTerm) ?? false)
-                );
-            }
-        }
+        //private void ApplyFiltersAndSort()
+        //{
+        //    if (_allProducts == null) return;
+        //    IEnumerable<Product> filtered = _allProducts.AsEnumerable();
+        //    string searchTerm = TbSearch.Text?.Trim().ToLower() ?? "";
+        //    if (!string.IsNullOrEmpty(searchTerm))
+        //    {
+        //        filtered = filtered.Where(p =>
+        //        (p.Name?.ToLower().Contains(searchTerm) ?? false) ||
+        //        (p.Descriotion?.ToLower().Contains(searchTerm) ?? false) ||
+        //        (p.Article?.ToLower().Contains(searchTerm) ?? false) ||
+        //        (p.Category?.Name?.ToLower().Contains(searchTerm) ?? false) ||
+        //        (p.Manufacture?.Name?.ToLower().Contains(searchTerm) ?? false) ||
+        //        (p.Suppie?.Name?.ToLower().Contains(searchTerm) ?? false)
+        //        );
+        //    }
+        //}
     }
 }
